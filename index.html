@@ -2,31 +2,84 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Dashboard de Indicadores</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         body {
             font-family: Arial;
-            text-align: center;
-            margin: 5px;
+            margin: 40px;
+            background-color: #f5f5f5;
         }
 
-        iframe {
-            width: 100%;
-            max-width: 900px;
-            height: 500px;
-            border: none;
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Meu Dashboard</h1>
+<h1>Dashboard de Indicadores</h1>
 
-    <iframe 
-        src="https://1drv.ms/x/c/5388b76eeac1f8d2/IQRoGUPIx8MXRJgtuTeP65g-AX9roGO8u00FrVCWsG6qCc8">
-    </iframe>
+<div class="container">
+
+    <div class="card">
+        <h3>Absenteísmo (%)</h3>
+        <canvas id="absenteismo"></canvas>
+    </div>
+
+    <div class="card">
+        <h3>Vendas Mensais</h3>
+        <canvas id="vendas"></canvas>
+    </div>
+
+</div>
+
+<script>
+
+    // 📊 GRÁFICO 1 - Absenteísmo
+    new Chart(document.getElementById("absenteismo"), {
+        type: 'line',
+        data: {
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai"],
+            datasets: [{
+                label: "Absenteísmo %",
+                data: [4, 6, 5, 8, 7],
+                borderWidth: 2
+            }]
+        }
+    });
+
+    // 📊 GRÁFICO 2 - Vendas
+    new Chart(document.getElementById("vendas"), {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai"],
+            datasets: [{
+                label: "R$ Vendas",
+                data: [12000, 15000, 10000, 18000, 20000],
+                borderWidth: 1
+            }]
+        }
+    });
+
+</script>
 
 </body>
 </html>
